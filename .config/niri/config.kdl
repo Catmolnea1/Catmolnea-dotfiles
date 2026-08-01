@@ -94,7 +94,6 @@ output "HDMI-A-1" {
     mode custom=true "1920x1080@76"
 
     focus-at-startup
-    variable-refresh-rate
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
@@ -140,7 +139,7 @@ output "DVI-D-1" {
 }
 cursor {
     hide-when-typing
-    hide-after-inactive-ms 5000
+    hide-after-inactive-ms 4000
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -313,6 +312,7 @@ spawn-at-startup "swaync -c ~/.config/swaync/config.json"
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-sh-at-startup "~/starterserver"
 spawn-sh-at-startup "openrgb --server"
+spawn-sh-at-startup "openrgb -p ~/.config/OpenRGB/Def.orp"
 
 
 
@@ -432,6 +432,8 @@ binds {
     // shows a list of important hotkeys.
 
     XF86PowerOff { spawn "systemctl" "suspend"; }
+    
+    Mod+X { spawn-sh ".config/scripts/bt"; }
 
     Mod+Alt+Y hotkey-overlay-title="Phone" { spawn-sh "scrcpy --max-fps 120"; }
 
